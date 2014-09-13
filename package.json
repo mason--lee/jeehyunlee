@@ -8,6 +8,20 @@
     "grunt-ng-annotate": "^0.3.2",
     "gzippo": "^0.2.0"
   },
+  "scripts": {
+    "start": "node web.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mason--lee/jeehyunlee.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express",
+    "angular"
+  ],
+  "author": "Mason Lee",
   "devDependencies": {
     "grunt": "^0.4.1",
     "grunt-autoprefixer": "^0.7.3",
