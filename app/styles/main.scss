@@ -9,17 +9,20 @@
 */
 $font-ptsans: PT Sans Caption, sans-serif;
 $font-titillium: Titillium Web, sans-serif;
+$font-opensans: Open Sans, sans-serif;
 $font-vesper: Vesper Libre, serif;
 $footer-height: 100px;
 $black: #333333;
+$gray: #555555;
 
 /*
 	Mixins
 */
 @mixin small-text() {
 	text-transform: uppercase;
-	font-weight: 600;
+	font-weight: 100;
 	display: block;
+	color: $gray;
 }
 
 @mixin font-size($sizeValue) {
@@ -81,9 +84,12 @@ html {
 }
 
 body {
-	font-family: $font-titillium;
+	font-family: $font-opensans;
 	text-rendering: optimizeLegibility;
 	overflow: auto;
+	padding: 0 25px;
+	background-color: #f7f7f7;
+	color: $gray;
 }
 
 .wrapper {
@@ -118,8 +124,8 @@ h1 {
 }
 
 h1.title {
-	font-family: $font-vesper;
-	margin-top: 0;
+	// font-family: $font-opensans;
+	margin-bottom: 20px;
 }
 
 h2 {
@@ -130,13 +136,10 @@ h3 {
 	@include font-size(18);
 }
 
-h4 {
-
-}
-
 p {
 	letter-spacing: 0.1px;
-	font-weight: 400;
+	font-weight: 100;
+	color: $gray;
 	@include font-size(16);
 }
 
@@ -147,16 +150,18 @@ p {
 
 /* Custom page header */
 .header {
-	height: 65px;
-	padding-top: 15px;
+	// height: 65px;
+	padding: 50px 0;
 	width: 100%;
-	border-bottom: 1px solid $black;
+	text-align: center;
+	// border-bottom: 1px solid $black;
 
 	.nav {
-
+		width: 100%;
+		text-align: center;
+		
 		li {
-			display: inline;
-			float: left;
+			display: inline-block;
 			margin-right: 15px;
 
 			a {
@@ -167,6 +172,10 @@ p {
 			a:hover {
 				color: #c04ce0;
 				background-color: rgba(0,0,0,0) !important;
+			}
+
+			a:focus {
+				background-color: rgba(0, 0, 0, 0);
 			}
 
 			a.activeSmall {
@@ -181,46 +190,62 @@ p {
 
 	
 	h1 {
-		width: 151px;
-		height: 44px;
-		text-indent: -999px;
-		overflow: hidden;
-		background: url("../images/jeehyun-logo.svg") no-repeat;
-		z-index: 100;
-		color: #fff;
-		font-weight: normal;
-		text-transform: uppercase;
-		font-size: 14px;
-		letter-spacing: 2px;
-		position: absolute;
-		top: 5px;
-		left: 50%;
-		text-align: center;
-		margin-left: -75.5px;
-		transition: background 0.2s, opacity 1s;
+		max-width: 440px;
+		margin: 25px auto;
+
+		a {
+
+			img {
+				width: 220px;
+				height: auto;
+			}
+		}
 
 		a {
 			display: block;
 		}
 	}
-	h1:hover {
-		// background-color: #c04ce0;
-	}
 } //End header
 
-.page-home {
-	height: 550px;
-	position: relative;
-	overflow: hidden;
-	img {
-		height: auto;
-		width: 100%;
-		display: block;
+#main {
+	padding: 40px 0;
+	background-color: #fff;
+	
+	.page {
+		
 	}
-}
 
-.main-page {
-	margin-top: 80px;
+
+	.page-home {
+		position: relative;
+		margin: -40px 0;
+
+		img {
+			height: auto;
+			width: 100%;
+			display: block;
+		}
+	}	
+
+	.page-about {
+		
+		.profile {
+			padding-top: 30px;
+
+			img {
+				width: 200px;
+				height: auto;
+			}
+		}
+
+		.short-bio {
+			
+			p {
+				@include font-size(12);	
+			}
+			
+		}
+	}
 }
 
 /* Custom page footer */
@@ -230,9 +255,8 @@ p {
 
 footer {
 	padding: 30px 0;
-	border-top: 1px solid $black;
 	position: relative;
-	background-color: #fff;
+	
 	li {
 		@include font-size(12);
 		@include small-text();
@@ -267,56 +291,53 @@ footer {
 }
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 500px) {
+	.header {
+		.nav {
+			li {
+				margin-right: 0;
+			}
+		}
+	}
+}
 
+@media screen and (max-width: 800px) {
+	.page-about {
+		.row {
+			.pull-left {
+				width: 100%;
+			}
+			.pull-right {
+				width: 100%;
+				text-align: center;
+			}
+		}
+	}
+}
+
+.ng-enter {
+	animation: moveFromRightFade 0.7s ease both;
+	z-index: 8888;
 }
 
 /**
  *  Page transition
  */
-.page-transition.ng-enter, .page-transition.ng-enter-active {
-	-webkit-animation:fadeInRight 0.5s both ease-in;
-	-moz-animation:fadeInRight 0.5s both ease-in;
-	animation:fadeInRight 0.5s both ease-in;  
-	// left: 0;
-	// opacity: 1;
+@-webkit-keyframes moveToRightFade {
+	from { }
+	to { opacity: 0.3; -webkit-transform: translateX(100%); }
+}
+@keyframes moveToRightFade {
+	from { }
+	to { opacity: 0.3; -webkit-transform: translateX(100%); transform: translateX(100%); }
 }
 
-.page-transition.ng-leave, .page-transition.ng-leave-active {
-	-webkit-animation:fadeOutLeft 0.5s both ease-in;
-	-moz-animation:fadeOutLeft 0.5s both ease-in;
-	animation:fadeOutLeft 0.5s both ease-in;   
-	// left: -20px;
-	// opacity: 0;
+@-webkit-keyframes moveFromRightFade {
+	from { opacity: 0.3; -webkit-transform: translateX(100%); }
 }
-
-
-
-/* slide in from the right */
-@keyframes slideInRight {
-	from 	{ transform:translateX(100%); }
-	to 		{ transform: translateX(0); }
+@keyframes moveFromRightFade {
+	from { opacity: 0.3; -webkit-transform: translateX(100%); transform: translateX(100%); }
 }
-@-moz-keyframes slideInRight {
-	from 	{ -moz-transform:translateX(100%); }
-	to 		{ -moz-transform: translateX(0); }
-}
-@-webkit-keyframes slideInRight {
-	from 	{ -webkit-transform:translateX(100%); }
-	to 		{ -webkit-transform: translateX(0); }
-}
-
-/* slide in from the bottom */
-@keyframes slideOutLeft {
-	to 		{ transform: translateX(-100%); }
-}
-@-moz-keyframes slideOutLeft {	
-	to 		{ -moz-transform: translateX(-100%); }
-}
-@-webkit-keyframes slideOutLeft {
-	to 		{ -webkit-transform: translateX(-100%); }
-}
-
 
 
 
