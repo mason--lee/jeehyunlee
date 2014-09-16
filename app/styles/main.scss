@@ -2,7 +2,7 @@
 // endbower
 
 * {
-	// border: 1px solid blue;
+	margin: 0;
 }
 /*
 	Variables 
@@ -88,6 +88,8 @@ body {
 
 .wrapper {
 	min-height: 100%;
+	height: auto !important;
+	height: 100%;
 	/* Negative indent footer by it's height */
 	margin: 0 auto -100px;
 }
@@ -207,45 +209,18 @@ p {
 } //End header
 
 .page-home {
-	left: 0;
-	right: 0;
-	// background-image: url("images/comingsoon.jpg");
-	background-repeat: no-repeat;
-	background-size: contain;
+	height: 550px;
+	position: relative;
+	overflow: hidden;
+	img {
+		height: auto;
+		width: 100%;
+		display: block;
+	}
 }
-
-.page-home>img{
-	min-height: 100%;
-	width: 100%;
-	height: auto;
-	top: 0;
-	left: 0;
-}
-
-// .bz-slide img {
-// 	width: 100%;
-// }
-
-// .landing-wrapper {
-// 	position: relative;
-// 	width: 100%;
-// 	height: 100vh;
-// 	overflow: hidden;
-// 	// border: 1px solid red;
-// }
-
-// .landing-header {
-// 	position: absolute;
-// 	z-index: 99;
-// 	border: none;
-// }
-
-// .min {
-// 	display: none !important;
-// }
 
 .main-page {
-	margin: 80px auto;
+	margin-top: 80px;
 }
 
 /* Custom page footer */
@@ -256,7 +231,8 @@ p {
 footer {
 	padding: 30px 0;
 	border-top: 1px solid $black;
-
+	position: relative;
+	background-color: #fff;
 	li {
 		@include font-size(12);
 		@include small-text();
