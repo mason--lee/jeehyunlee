@@ -1,5 +1,14 @@
-<div class="container main-page">
+<div class="main-page">
 	<div class="row">
-		<h4>Coming soon..</h4>		
+		<h2>
+			Autumn/Winter 2014
+		</h2>
+		<ul class="collection list-inline">
+			<li ng-repeat="collection in collections" class="col-md-4">
+				<a href="">
+					<img src="images/{{collection.shot}}.jpg" alt="shot{{collection.count}}" width="100%">
+				</a>
+			</li>
+		</ul>
 	</div>
 </div>
