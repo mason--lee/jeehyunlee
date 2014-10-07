@@ -334,6 +334,26 @@ p {
 
 
 /* Responsive: Portrait tablets and up */
+@media screen and (max-width: 980px) {
+	.container-fluid {
+		width: 100%;
+		padding: 0 15px;
+	}
+
+	#sticky {
+		top: 9%;
+		margin-left: 5%;
+	}
+
+	.page {
+		padding: 0 25px;
+	}
+
+	p {
+		text-align: left;
+	}
+}
+
 @media screen and (max-width: 500px) {
 	.header {
 		.nav {
