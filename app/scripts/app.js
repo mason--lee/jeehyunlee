@@ -49,19 +49,64 @@ myApp.config(function($routeProvider, $locationProvider) {
 	}
 });
 
-myApp.directive("scroll", function($window) {
-	// var wrapper = angular.element(".snap-content"),
-	// 	sticky = angular.element("#sticky"),
-	// 	length = wrapper.height() - sticky.height() + wrapper.offset().top();
-	// var wrapper = angular.element($window);
-	return function(scope, element, attrs) {
-		angular.element($window).bind("scroll", function() {
-			console.log("scrolling!");
 
-			scope.$apply();
-		});
-	}
-})
+// myApp.directive("scroll", function($window) {
+// 	return {
+// 		scope: {
+// 			offset: '@'
+// 		},
+
+// 		link: function($scope, $elem, $attrs) {
+// 			angular.element($window).bind("scroll", function() {
+
+// 				console.log("scrolling");
+
+// 				var offsetTop = $scope.offset,
+// 					doc = document.documentElement,
+// 					initialPositionStyle = $elem.css('position'),
+// 					stickyLine,
+// 					scrollTop;
+
+// 				// set the top offset
+// 				$elem.css('top', offsetTop+"px");
+				
+// 				// get the sticky line
+// 				function setInitial() {
+// 					// stickyLine = $elem[0].offsetTop - offsetTop;
+// 					stickyLine = $elem[0].offsetTop;
+// 					checkSticky();
+// 				}
+
+// 				// check if the window has passed the sticky line
+// 				function checkSticky() {
+// 					scrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+
+// 					// console.log("scrollTop is " + scrollTop);
+// 					// console.log("stickyLine is " + stickyLine);
+
+// 					if (scrollTop >= stickyLine) {
+// 						$elem.css('position', 'fixed');
+// 						console.log('position fixed');
+// 					} else {
+// 						$elem.css('position', initialPositionStyle);
+// 						console.log('initial position');
+// 					}
+// 				}
+
+// 				// Handle resize event
+// 				function resize() {
+// 					$elem.css('position', initialPositionStyle);
+// 				}
+
+// 				$window.on('scroll', checkSticky);
+// 				setInitial();
+				
+// 				$scope.$apply();
+// 			});
+			
+// 		}
+// 	}
+// });
 
 
 
