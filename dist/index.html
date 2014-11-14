@@ -51,25 +51,25 @@
 		/*
 			Hide the sidebar usually
 		 */
-		$(".sidebar").css({ opacity: 0 });
-		$(".lines-button ").click(function() {
-			$(".sidebar").removeClass("animated fadeOut");
-			$(".sidebar").addClass("animated fadeIn");
-		});
+		// $(".sidebar").css({ opacity: 0 });
+		// $(".lines-button ").click(function() {
+		// 	$(".sidebar").removeClass("animated fadeOut");
+		// 	$(".sidebar").addClass("animated fadeIn");
+		// });
 
-		$("#main").click(function(e) {
-			if ($(e.target).is('.lines-button, .lines-button *')) {
-				return;
-			}
-			if ($(".sidebar").hasClass("animated fadeIn")) {
-				$(".sidebar").removeClass("animated fadeIn");
-				$(".sidebar").css({ opacity: 0 });
-			}	
-		});
+		// $("#main").click(function(e) {
+		// 	if ($(e.target).is('.lines-button, .lines-button *')) {
+		// 		return;
+		// 	}
+		// 	if ($(".sidebar").hasClass("animated fadeIn")) {
+		// 		$(".sidebar").removeClass("animated fadeIn");
+		// 		$(".sidebar").css({ opacity: 0 });
+		// 	}	
+		// });
 
-		$("nav ul li a").click(function() {
-			if ($(".sidebar").hasClass("animated fadeIn")) {
-				$(".sidebar").removeClass("animated fadeIn");
-				$(".sidebar").css({ opacity: 0 });
-			}	
-		})</script>  
+		// $("nav ul li a").click(function() {
+		// 	if ($(".sidebar").hasClass("animated fadeIn")) {
+		// 		$(".sidebar").removeClass("animated fadeIn");
+		// 		$(".sidebar").css({ opacity: 0 });
+		// 	}	
+		// })</script>  
