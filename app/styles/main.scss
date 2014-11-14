@@ -4,11 +4,13 @@
 * {
 	margin: 0;
 }
+
+button:focus {outline:0;}
 /*
 	Variables 
 */
-$font-raleway: Raleway, sans-serif;
-$footer-height: 100px;
+$font-raleway: 'univers_ce_45_lightregular', Helvetica, Arial;
+// $footer-height: 100px;
 $black: #333333;
 $gray: #555555;
 $light-gray: #ababab;
@@ -47,6 +49,117 @@ $purple: #ff82ec;
 .icon-close:before {
 	content: "\e601";
 }
+
+$button-size : 2rem; 
+$transition: .3s; // increase this to see the transformations in slow-motion
+$color: #202020;
+
+.lines-button {
+	display: inline-block;
+	transition: .3s;
+	cursor: pointer;
+	user-select: none;
+	border-radius: $button-size/7;
+	background: none;
+	border: none;
+	z-index: 99999999;
+	
+	&:hover {
+		opacity: 1;
+	}
+
+	&:active {
+		transition: 0;
+		background: rgba(0,0,0,.1);
+	}
+}
+
+@mixin line {
+	display: inline-block;
+	width: $button-size;
+	height: $button-size/7;
+	background: $color;
+	border-radius: $button-size/14; 
+	transition: $transition;
+}
+
+.lines {   
+	//create middle line
+	@include line;
+	position: relative; 
+
+	/*create the upper and lower lines as pseudo-elements of the middle line*/
+	&:before, &:after {
+		@include line;
+		position: absolute;
+		left: 0;
+		content: '';
+		transform-origin: $button-size/14 center;
+	}
+	
+	&:before { top: $button-size/4; }
+	&:after { top: -$button-size/4; }
+}
+
+.lines-button:hover {
+	opacity: 1;
+
+	.lines {
+		&:before { top: $button-size/3.5; }
+		&:after { top: -$button-size/3.5; }
+	}
+}
+
+.lines-button.x.close-toggle .lines{
+	/*hide the middle line*/
+	background: transparent;
+
+	/*overlay the lines by setting both their top values to 0*/
+	&:before, &:after{
+		transform-origin: 50% 50%;
+		top:0;
+		width: $button-size;
+	}
+
+	// rotate the lines to form the x shape
+	&:before{
+		transform: rotate3d(0,0,1,45deg); 
+	}
+
+	&:after{
+		transform: rotate3d(0,0,1,-45deg); 
+	}
+}
+
+.lines-button.x.close-toggle .lines{
+ 
+    /*hide the middle line*/
+    background: transparent;
+ 
+    /*overlay the lines by setting both their top values to 0*/
+    &:before, &:after{
+      transform-origin: 50% 50%;
+      top:0;
+      width: $button-size;
+    }
+ 
+    // rotate the lines to form the x shape
+    &:before{
+      transform: rotate3d(0,0,1,45deg); 
+    }
+    &:after{
+      transform: rotate3d(0,0,1,-45deg); 
+    }
+}
+
+.lines-button:hover {
+	opacity: 1;
+	.lines {
+		&:before { top: $button-size/3.5; }
+		&:after { top: -$button-size/3.5; }
+	}
+}
+
 /*
 	Mixins
 */
@@ -154,16 +267,16 @@ h3 {
 }
 
 p {
-	letter-spacing: 0.1px;
+	letter-spacing: 0.3px;
 	font-weight: 300;
 	@include font-size(15);
+	line-height: 1.6;
 }
 
 #sticky {
-	margin-left: 7%;
+	margin-left: 6%;
 	position: fixed;
-	width: 100%;
-	height: 20px;
+	top: 200px;
 }
 
 .container-fluid {
@@ -179,7 +292,7 @@ p {
 	overflow: hidden;
 
 	/* Negative indent footer by it's height */
-	margin: 0 auto -$footer-height;
+	// margin: 0 auto -$footer-height;
 
 	.sidebar {
 		background-color: $purple;
@@ -225,6 +338,13 @@ p {
 				color: #fff;
 				font-weight: 900;
 			}
+
+			ul {
+				padding-top: 0.5em;
+				li {
+					margin-bottom: 0.1em;
+				}
+			}
 		}
 	}
 	
@@ -260,18 +380,24 @@ p {
 			}
 			
 			.profile {
-				width: 150px;
-				height: 150px;
-				border: 3px solid #f1f1f1;
-				border-radius: 1000px;
-				margin: 0 auto;
-				overflow: hidden;
-
-				img {
+				// width: 150px;
+				// height: 150px;
+				// border: 3px solid #f1f1f1;
+				// border-radius: 1000px;
+				// margin: 0 auto;
+				// overflow: hidden;
+				
+				.profile-wrapper {
 					width: 80%;
-					height: auto;
-					margin-left: 12px;
+					margin: 0 auto;
+
+					img {
+						width: 100%;
+						height: auto;
+						margin-left: 12px;
+					}
 				}
+				
 			}
 
 			.short-bio {
@@ -307,14 +433,16 @@ p {
 
 /* Custom page footer */
 .push, .main-footer {
-	height: $footer-height;
+	// height: $footer-height;
 	clear: both;
 }
 
 .main-footer {
+	
 	position: relative;
 	z-index: 99;
 	background-color: #fff;
+	padding: 2em 0;
 	
 	.pull-right {
 		text-align: right;
@@ -328,6 +456,11 @@ p {
 	li {
 		@include font-size(12);
 		@include small-text();
+		color: $light-gray !important;
+		
+		a {
+			color: $light-gray !important;
+		}
 		span {
 
 		}
@@ -336,15 +469,17 @@ p {
 
 
 /* Responsive: Portrait tablets and up */
+@media screen and (max-width: 1210px) {
+	#sticky {
+		top: 9%;
+		margin-left: 5%;
+	}
+}
+
 @media screen and (max-width: 980px) {
 	.container-fluid {
 		width: 100%;
 		padding: 0 15px;
-	}
-
-	#sticky {
-		top: 9%;
-		margin-left: 5%;
 	}
 
 	.page {
@@ -368,13 +503,16 @@ p {
 
 @media screen and (max-width: 800px) {
 	.page-about {
-		.row {
-			.pull-left {
-				width: 100%;
-			}
-			.pull-right {
-				width: 100%;
-				text-align: center;
+		.pull-left {
+			width: 100%;
+		}
+		.pull-right {
+			width: 100%;
+			text-align: center;
+			padding-top: 5em;
+
+			.profile-wrapper {
+				width: 60%;
 			}
 		}
 	}
@@ -402,6 +540,79 @@ p {
 }
 @keyframes moveFromRightFade {
 	from { opacity: 0.3; -webkit-transform: translateX(100%); transform: translateX(100%); }
+}
+
+
+.sidebar {
+	-webkit-animation-duration: 2s;
+	-moz-animation-duration: 2s;
+	animation-duration: 2s;
+	-webkit-animation-delay: 0.2s;
+	-moz-animation-delay: 0.2s;
+	animation-delay: 0.2s;
+}
+
+.spinner-wrapper{
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	z-index: 9999999;
+	background-color: #ff82ec;
+	padding: auto auto;
+}
+
+.spinner {
+	margin: 100px auto;
+	width: 50px;
+	height: 30px;
+	text-align: center;
+	font-size: 10px;
+}
+
+.spinner > div {
+	background-color: #333;
+	height: 100%;
+	width: 6px;
+	display: inline-block;
+
+	-webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+	animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+	-webkit-animation-delay: -1.1s;
+	animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+	-webkit-animation-delay: -1.0s;
+	animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+	-webkit-animation-delay: -0.9s;
+	animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+	-webkit-animation-delay: -0.8s;
+	animation-delay: -0.8s;
+}
+
+@-webkit-keyframes stretchdelay {
+	0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+	20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes stretchdelay {
+	0%, 40%, 100% { 
+		transform: scaleY(0.4);
+		-webkit-transform: scaleY(0.4);
+	} 
+	20% {
+		transform: scaleY(1.0);
+		-webkit-transform: scaleY(1.0);
+	}
 }
 
 
