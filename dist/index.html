@@ -8,14 +8,21 @@
 		ga('create', 'UA-47445948-1', 'auto');
 		ga('send', 'pageview');</script> <!--[if lt IE 9]>
 	<script src="scripts/oldieshim.a466b7b1.js"></script>
-	<![endif]--> <script src="scripts/vendor.80abf79e.js"></script> <script src="scripts/scripts.e12b35a6.js"></script> <script>var open = false;
+	<![endif]--> <script src="scripts/vendor.80abf79e.js"></script> <script src="scripts/scripts.e12b35a6.js"></script> <script>$(".sidebar").css({ opacity: 0 });
+		
+		var open = false;
 		$(".x").click(function() {
 			if(!open) {
 				$(".x").addClass("close-toggle");
+				$(".sidebar").addClass("animated fadeIn");
 				open = true;
 			}
 			else {
 				$(".x").removeClass("close-toggle");
+				// if ($(".sidebar").hasClass("animated fadeIn")) {
+				$(".sidebar").removeClass("animated fadeIn");
+				$(".sidebar").css({ opacity: 0 });
+				// }	
 				open = false;
 			}	
 		});
@@ -26,6 +33,8 @@
 			}
 			if ($(".x").hasClass("close-toggle")) {
 				$(".x").removeClass("close-toggle");
+				$(".sidebar").removeClass("animated fadeIn");
+				$(".sidebar").css({ opacity: 0 });
 				open = false;
 			}
 		});
@@ -33,10 +42,15 @@
 		$("nav ul li a").click(function() {
 			if ($(".x").hasClass("close-toggle")) {
 				$(".x").removeClass("close-toggle");
+				$(".sidebar").removeClass("animated fadeIn");
+				$(".sidebar").css({ opacity: 0 });
 				open = false;
 			}
 		});
 
+		/*
+			Add a loading spinner
+		 */
 		$(window).load(function() {
 			$(".spinner").fadeOut("slow");
 		});
@@ -48,12 +62,14 @@
 			$(".spinner-wrapper").fadeIn("slow");
 		}
 
+		$(".collection li a img ").on("load", function() {
+			$(".spinner").fadeOut("slow");
+		});
 		/*
 			Hide the sidebar usually
 		 */
 		// $(".sidebar").css({ opacity: 0 });
 		// $(".lines-button ").click(function() {
-		// 	$(".sidebar").removeClass("animated fadeOut");
 		// 	$(".sidebar").addClass("animated fadeIn");
 		// });
 
