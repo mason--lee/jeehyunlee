@@ -19,7 +19,6 @@
 		<link rel="stylesheet" href="styles/main.css">
 		<link rel="stylesheet" href="styles/animate.css">
 		<!-- endbuild -->
-		<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 	</head>
 	<body ng-app="jeehyunWebApp" ng-controller="mainController">
 		<!--[if lt IE 7]>
@@ -147,93 +146,9 @@
 	<!-- endbuild -->
 	<!-- build:js({.tmp,app}) scripts/scripts.js -->
 	<script src="scripts/app.js"></script>
-	<script src="scripts/sticky.js"></script>
+	<script src="scripts/application.js"></script>
 	<script src="scripts/controllers/main.js"></script>
 
 	<!-- endbuild -->
-
-	<script>
-		$(".sidebar").css({ opacity: 0 });
-		
-		var open = false;
-		$(".x").click(function() {
-			if(!open) {
-				$(".x").addClass("close-toggle");
-				$(".sidebar").addClass("animated fadeIn");
-				open = true;
-			}
-			else {
-				$(".x").removeClass("close-toggle");
-				// if ($(".sidebar").hasClass("animated fadeIn")) {
-				$(".sidebar").removeClass("animated fadeIn");
-				$(".sidebar").css({ opacity: 0 });
-				// }	
-				open = false;
-			}	
-		});
-
-		$("#main").click(function(e) {
-			if ($(e.target).is('.x, .x *')) {
-				return;
-			}
-			if ($(".x").hasClass("close-toggle")) {
-				$(".x").removeClass("close-toggle");
-				$(".sidebar").removeClass("animated fadeIn");
-				$(".sidebar").css({ opacity: 0 });
-				open = false;
-			}
-		});
-
-		$("nav ul li a").click(function() {
-			if ($(".x").hasClass("close-toggle")) {
-				$(".x").removeClass("close-toggle");
-				$(".sidebar").removeClass("animated fadeIn");
-				$(".sidebar").css({ opacity: 0 });
-				open = false;
-			}
-		});
-
-		/*
-			Add a loading spinner
-		 */
-		$(window).load(function() {
-			$(".spinner").fadeOut("slow");
-		});
-
-		if($(".spinner").css({ opacity: 0 })) {
-			$(".spinner-wrapper").fadeOut("slow");
-		}
-		else if($(".spinner").css({ opacity: 1 })) {
-			$(".spinner-wrapper").fadeIn("slow");
-		}
-
-		$(".collection li a img ").on("load", function() {
-			$(".spinner").fadeOut("slow");
-		});
-		/*
-			Hide the sidebar usually
-		 */
-		// $(".sidebar").css({ opacity: 0 });
-		// $(".lines-button ").click(function() {
-		// 	$(".sidebar").addClass("animated fadeIn");
-		// });
-
-		// $("#main").click(function(e) {
-		// 	if ($(e.target).is('.lines-button, .lines-button *')) {
-		// 		return;
-		// 	}
-		// 	if ($(".sidebar").hasClass("animated fadeIn")) {
-		// 		$(".sidebar").removeClass("animated fadeIn");
-		// 		$(".sidebar").css({ opacity: 0 });
-		// 	}	
-		// });
-
-		// $("nav ul li a").click(function() {
-		// 	if ($(".sidebar").hasClass("animated fadeIn")) {
-		// 		$(".sidebar").removeClass("animated fadeIn");
-		// 		$(".sidebar").css({ opacity: 0 });
-		// 	}	
-		// })
-	</script>
 </body>
 </html>
