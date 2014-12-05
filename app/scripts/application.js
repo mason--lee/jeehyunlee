@@ -55,3 +55,14 @@ $(".sidebar").css({ opacity: 0 });
     $(".collection li a img ").on("load", function() {
       $(".spinner").fadeOut("slow");
     });
+
+
+    // Lazy Image loader
+    $(".lazy").lazyload({
+      effect: "fadeIn"
+    });
+
+
+
+
+
