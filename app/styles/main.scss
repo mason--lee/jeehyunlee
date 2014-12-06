@@ -352,8 +352,15 @@ p {
 	 *  Main content wrapper
 	 */
 	#main {
-		padding: 100px 0;
+		// padding: 100px 0;
 		background-color: #fff;
+		
+		.logo {
+			margin: 2em 0;
+			font-weight: bold;
+			padding-left: 15px;
+			text-align: center;
+		}
 
 		.page-home {
 
